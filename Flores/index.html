@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fceabb;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+        }
+        .flowers-container {
+            display: none;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .sunflower {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background-color: yellow;
+            border-radius: 50%;
+            transform-origin: center bottom;
+        }
+        .center {
+            width: 40px;
+            height: 40px;
+            background-color: #8B5A2B;
+            border-radius: 50%;
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        .stem {
+            width: 10px;
+            height: 80px;
+            background-color: green;
+            position: absolute;
+            top: 150px;
+            left: 45px;
+        }
+        @keyframes bloom {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .sunflower {
+            animation: bloom 0.5s ease-in-out;
+        }
+        h1, p {
+            font-family: Arial, sans-serif;
+            color: #d48f00;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Holaa, tengo un pequeño detalle para ti 🌻💛</h1>
+    <h2>Físicamente no estoy presente como me gustaría, pero te tengo presente.</h2>
+    <button onclick="showFlowers()">Haz clic aqui</button>
+    <div class="flowers-container" id="flowersContainer"></div>
+    
+    <script>
+        function showFlowers() {
+            const container = document.getElementById("flowersContainer");
+            container.innerHTML = "";
+            container.style.display = "flex";
+            for (let i = 0; i < 5; i++) {
+                let flower = document.createElement("div");
+                flower.classList.add("sunflower");
+                
+                for (let j = 0; j < 12; j++) {
+                    let petal = document.createElement("div");
+                    petal.classList.add("petal");
+                    petal.style.transform = `rotate(${j * 30}deg) translateY(-15px)`;
+                    flower.appendChild(petal);
+                }
+                
+                let center = document.createElement("div");
+                center.classList.add("center");
+                flower.appendChild(center);
+                
+                let stem = document.createElement("div");
+                stem.classList.add("stem");
+                flower.appendChild(stem);
+                
+                container.appendChild(flower);
+            }
+        }
+    </script>
+</body>
+</html>
